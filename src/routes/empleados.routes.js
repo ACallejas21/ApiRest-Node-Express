@@ -3,9 +3,10 @@ import { getEmpleados, createEmpleado, updateEmpleado, deleteEmpleado, getEmplea
 
 const router =  Router()
 
-router.get("/empleados/:params", getEmpleados);
+// router.get("/empleados/:params", getEmpleados);
+router.get("/empleados/", getEmpleados);
 
-//router.get("/empleados/:id", getEmpleadosById);
+router.get("/empleados/:id", getEmpleadosById);
 
 router.post("/empleados", createEmpleado);
 
