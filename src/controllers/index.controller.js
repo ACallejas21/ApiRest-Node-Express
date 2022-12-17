@@ -7,3 +7,7 @@ export const ping = async (req, res) => {
 export const index = async (req, res) => {
     res.send("HOLA")
   }
+
+  export const indexParams = async (req, res) => {
+    res.send("indexParams")
+  }
