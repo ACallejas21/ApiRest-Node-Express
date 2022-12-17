@@ -8,3 +8,5 @@ export const DB_PORT = process.env.DB_PORT || "3306"
 export const DB_USER = process.env.DB_USER || "Akdiel"
 export const DB_PASSWORD = process.env.DB_PASSWORD || "Acallejas21"
 export const DB_DATABASE = process.env.DB_DATABASE || "pruebaapirest"
+
+export const NumberEachPage = 2
