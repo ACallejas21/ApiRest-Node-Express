@@ -9,5 +9,11 @@ export const index = async (req, res) => {
   }
 
   export const indexParams = async (req, res) => {
+
+    console.log(req.query.nombre);
+
+    // const mykeyParams = window.location.search
+    // const urlparams = new URLSearchParams(mykeyParams)
+    //console.log(urlparams);
     res.send("indexParams")
   }
