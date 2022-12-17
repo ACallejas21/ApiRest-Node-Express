@@ -5,7 +5,7 @@ export const ping = async (req, res) => {
   }
 
 export const index = async (req, res) => {
-    res.send("Documentacion: https://documenter.getpostman.com/view/13157209/2s8YzZNdzM")
+    res.json("Documentacion: https://documenter.getpostman.com/view/13157209/2s8YzZNdzM")
   }
 
   export const indexParams = async (req, res) => {
