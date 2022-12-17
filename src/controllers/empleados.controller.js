@@ -2,15 +2,39 @@ import { response } from "express";
 import { pool } from "../db.js";
 import Responder from "./respuesta.js";
 import ResponderDelete from "./respuestaDelete.js";
+import { NumberEachPage } from "../config.js";
 
 export const getEmpleados = async (req, res) => {
-  const {params} = req.params
-console.log('params: ',  Object(params));
+  const { id, page, search } = req.query;
 
   try {
-    const [Empleados] = await pool.query(
-      "SELECT id, nombre, salario FROM empleado WHERE estado = 1"
-    );
+    let Empleados;
+
+    if (page && search) {
+      let minValue = 0;
+      let maxValue = NumberEachPage;
+      if (Number(page) == 1) {  
+        minValue = 0;
+        maxValue = NumberEachPage;
+      } else {
+        minValue = (Number(page) - 1) * NumberEachPage;
+        maxValue = Number(page) * NumberEachPage;
+      }
+      [Empleados] = await pool.query(
+        `select id, nombre, salario FROM empleado where estado = 1 and nombre like '%${search}%' limit ?, ?`,[ minValue, maxValue]
+      );
+    }else{
+      if (!id) {
+        [Empleados] = await pool.query(
+          "SELECT id, nombre, salario FROM empleado WHERE estado = 1"
+        );
+      } else {
+        [Empleados] = await pool.query(
+          "SELECT id, nombre, salario FROM empleado WHERE estado = 1 and id = ?",
+          [id]
+        );
+      }
+    }
 
     if (!Empleados) {
       return res;
@@ -27,7 +51,6 @@ console.log('params: ',  Object(params));
       Error: error,
     });
   }
- 
 };
 
 export const getEmpleadosById = async (req, res) => {
